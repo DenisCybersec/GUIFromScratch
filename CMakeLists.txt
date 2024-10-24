@@ -1,0 +1,6 @@
+project(GUIFromSratch )
+file(GLOB SOURCES "src/*/*.cpp")
+file(GLOB HEADERS "include/*")
+add_executable(main ${SOURCES})
+add_executable(main tests/test.cpp)
+target_include_directories(main PRIVATE ${HEADERS})
