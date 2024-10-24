@@ -16,10 +16,10 @@ class vector {
     public:
         vector(size_t size){ // Constructor for dynamic array
             innerPtr_ = (T*)mmalloc(size*sizeof(T));
-            size_ = size;
-            memorySize_ = size;
+            size_ = 0; // by default 0 elements
+            memorySize_ = size; 
         }
-        T& at(size_t pos)
+        T& at(size_t pos) // get element from vector
         {
             if(pos < memorySize_)
             {
@@ -30,22 +30,18 @@ class vector {
                 throw OutOfRangeException("Attemp to access memory outside vector");
             }
         }
-        void set(size_t pos, T val)
+        void set(size_t pos, T val) // set value 
         {
             if(pos < memorySize_)
             {
-                innerPtr_[pos] = val;
-            }
-            else
-            {
-                throw OutOfRangeException("Attemp to access memory outside vector");
+                this->at(pos) = val;
             }
         }
-        T* ptr()
+        T* ptr() // get ptr to raw access to memory
         {
             return innerPtr_;
         }
-        void resize(size_t size)
+        void resize(size_t size) // resize memory allocated to vector
         {
             innerPtr_ = mrealloc(innerPtr_,size);
             if(size_ < size)
@@ -54,32 +50,37 @@ class vector {
             }
             memorySize_ = size;
         }
-        void push_back(T a)
+        void push_back(T a) // push element in the end of vector
         {
-            if(size_ < memorySize_)
-            {
-                innerPtr_[size_] = a;
-            }
-            else
+            if(size_ >= memorySize_)
             {
                 resize(memorySize_*2);
                 innerPtr_[size_] = a;
             }
+            innerPtr_[size_] = a;
+            size_++;
         }
-        T pop_back()
+        T pop_back() // get last element of vector
         {
-            size_ -= 1;
-            return innerPtr_[size_+1]; 
+            if(size_ == 0)
+            {
+                throw OutOfRangeException("Attemp to access memory outside vector");
+            }
+            return innerPtr_[--size_]; 
         }
-        size_t size()
+        size_t size() const // get size of vector
         {
             return size_;
         }
+        size_t memorySize() const // get size of allocated memory to vector
+        {
+            return memorySize_;
+        }
         ~vector<T>()
         {
-            mfree(innerPtr_);
+            mfree(innerPtr_); // free memory
         }
-        T operator [](size_t i)
+        T& operator [](size_t i) // sugar
         {
             return this->at(i);
         }
