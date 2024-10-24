@@ -1,7 +1,4 @@
 #include<io.hpp>
-#include<malloc.hpp>
-#include<pow.hpp>
-#include<syscall.hpp>
 void print(char* buf, size_t size)
 {
     syscall(1,(void*)1,buf,size);
@@ -21,7 +18,7 @@ void printInt(int number)
         }
         for(size_t j = 1;j<=10;j++) // get digit amount 
         {
-            if(tempNumber < pow(10,j)) 
+            if(tempNumber < pow<int>(10,j)) 
             {
                 length = j;
                 break;

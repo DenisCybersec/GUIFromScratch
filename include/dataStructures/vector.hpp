@@ -1,5 +1,6 @@
-// vector.hpp
-#include <malloc.hpp>
+#ifndef VECTOR_H
+#define VECTOR_H
+#include<malloc.hpp>
 #include<types.hpp>
 class OutOfRangeException { // MOVE TO SEPARATE FILE AFAP
 public:
@@ -89,3 +90,4 @@ class vector {
         size_t size_; // Size of the vector
         size_t memorySize_; // Size of allocated memory
 };
+#endif
