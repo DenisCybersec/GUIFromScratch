@@ -1,5 +1,4 @@
 .vscode
 test
-tests
 build
 CMakeTest.txt
