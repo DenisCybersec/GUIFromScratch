@@ -1,11 +1,11 @@
 #include<io.hpp>
 void print(char* buf, size_t size)
 {
-    syscall(1,(void*)1,buf,size);
+    msyscall(1,(void*)1,buf,size);
 }
 void read(char* buf, size_t size)
 {
-    syscall(0,(void*)0,buf,size);
+    msyscall(0,(void*)0,buf,size);
 }
 void printInt(int number)
 {

@@ -75,7 +75,7 @@ void merge_block(Block* fst_block, Block* snd_block)
 }
 void init_memory_pool()
 {
-    void* ptr = sbrk(1024*1024); // Allocate 1MB of dynamic memory
+    void* ptr = msbrk(1024*1024); // Allocate 1MB of dynamic memory
     header = (Block*)ptr;
     header->size = 1024*1024 - sizeof(Block);
     header->is_free = true;
@@ -116,7 +116,7 @@ void* mmalloc(size_t size)
     Block* ptr = find_free_block(size);
     if(ptr == nullptr)
     {
-        ptr = (Block*)sbrk(size + sizeof(Block));  // Get new memory and make list to it
+        ptr = (Block*)msbrk(size + sizeof(Block));  // Get new memory and make list to it
         ptr->size = size;
         ptr->is_free = true;
         ptr->previous = get_end(header);

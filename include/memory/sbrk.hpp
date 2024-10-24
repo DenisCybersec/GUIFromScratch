@@ -1,2 +1,2 @@
 #include<syscall.hpp>
-void* sbrk(long increment); // system call for get memory
+void* msbrk(long increment); // system call for get memory

@@ -44,8 +44,8 @@ class vector {
         }
         void resize(size_t size) // resize memory allocated to vector
         {
-            innerPtr_ = mrealloc(innerPtr_,size);
-            if(size_ < size)
+            innerPtr_ = (T*)mrealloc(innerPtr_,size*sizeof(T));
+            if(size_ > size)
             {
                 size_ = size;
             }

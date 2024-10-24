@@ -15,14 +15,22 @@ class stack
         {
             if(size_ >= memorySize_)
             {
-                resize(size_*2);
+                resize(memorySize_*2);
             }
-            size_++;
             innerPtr_[size_] = a;
+            size_++;
         }
         T pop()
         {
             return innerPtr_[size_--];
+        }
+        size_t size()
+        {
+            return size_;
+        }
+        size_t mem()
+        {
+            return memorySize_;
         }
         ~stack()
         {
@@ -34,12 +42,11 @@ class stack
         size_t memorySize_;
         void resize(size_t size)
         {
-            if(size >= memorySize_)
+            innerPtr_ = (T*)mrealloc(innerPtr_,size*sizeof(T));
+            if(size_ > size)
             {
-                mrealloc(innerPtr_,size);
-            }else
-            {
-                mrealloc(innerPtr_,memorySize_);
+                size_ = size;
             }
+            memorySize_ = size;
         }
 };

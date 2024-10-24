@@ -1,4 +1,4 @@
-void* syscall(long number, void* arg) {
+void* msyscall(long number, void* arg) {
     void* result;
     asm volatile (
         "movq %1, %%rax\n"   // Load the syscall number into rax
@@ -11,7 +11,7 @@ void* syscall(long number, void* arg) {
     );
     return result;
 }
-void* syscall(long number, void* arg1,void* arg2, unsigned long arg3)
+void* msyscall(long number, void* arg1,void* arg2, unsigned long arg3)
 {
     void* result;
     asm volatile (
