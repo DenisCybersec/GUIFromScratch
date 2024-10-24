@@ -89,9 +89,11 @@ void mfree(void* ptr)
 {
     Block* block = (Block*)((char*)ptr - sizeof(Block));
     block->is_free = true;
-    if(block->previous)
-    {
-        merge_block(block->previous,block);
+    if (block->previous) {
+        merge_block(block->previous, block);
+    }
+    if (block->next && block->next->is_free) {
+        merge_block(block, block->next);
     }
 }
 void* mrealloc(void* ptr, size_t size)
