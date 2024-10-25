@@ -1,4 +1,6 @@
 
+#ifndef STACK_H
+#define STACK_H
 #include<vector.hpp>
 #include<types.hpp>
 template<typename T>
@@ -50,3 +52,4 @@ class stack
             memorySize_ = size;
         }
 };
+#endif

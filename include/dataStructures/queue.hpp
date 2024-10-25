@@ -1,3 +1,5 @@
+#ifndef QUEUE_H
+#define QUEUE_H
 template<typename T>
 struct Node
 {
@@ -23,11 +25,11 @@ class queue
                 last_ = newNode;
                 first_ = last_;
             }else{
-            Node<T>* newNode = new Node<T>();
-            newNode->value = a;
-            last_->prev = newNode;
-            newNode->next = last_;
-            last_ = newNode;
+                Node<T>* newNode = new Node<T>();
+                newNode->value = a;
+                last_->prev = newNode;
+                newNode->next = last_;
+                last_ = newNode;
             }
         }
         T pop()
@@ -40,3 +42,4 @@ class queue
         Node<T>* last_;
         Node<T>* first_;
 };
+#endif
