@@ -1,45 +1,20 @@
 #ifndef QUEUE_H
 #define QUEUE_H
+#include<list.hpp>
 template<typename T>
-struct Node
-{
-    T value;
-    Node* prev;
-    Node* next;
-};
-template<typename T>
-class queue
+class mqueue
 {
     public:
-        queue()
-        {
-            last_ = nullptr;
-            first_ = last_;
-        }
+        mqueue() : list_() {}
         void push(T a)
         {
-            if(!last_)
-            {
-                Node<T>* newNode = new Node<T>();
-                newNode->value = a;
-                last_ = newNode;
-                first_ = last_;
-            }else{
-                Node<T>* newNode = new Node<T>();
-                newNode->value = a;
-                last_->prev = newNode;
-                newNode->next = last_;
-                last_ = newNode;
-            }
+            list_.push(a);
         }
         T pop()
         {
-            Node<T>* tmp = first_;
-            first_ = first_->prev; 
-            return tmp->value;
+            list_.pop();
         }
     private:
-        Node<T>* last_;
-        Node<T>* first_;
+        mlist<T> list_;
 };
 #endif

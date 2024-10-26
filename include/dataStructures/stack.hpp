@@ -4,52 +4,27 @@
 #include<vector.hpp>
 #include<types.hpp>
 template<typename T>
-class stack
+class mstack
 {
     public:
-        stack(size_t size)
-        {
-            innerPtr_ = (T*)mmalloc(size * sizeof(T));
-            size_ = 0;
-            memorySize_ = size;
-        }
+        mstack(size_t size) : vctr_(size) {}
         void push(T a)
         {
-            if(size_ >= memorySize_)
-            {
-                resize(memorySize_*2);
-            }
-            innerPtr_[size_] = a;
-            size_++;
+            vctr_.push_back(a);
         }
         T pop()
         {
-            return innerPtr_[size_--];
+            return vctr_.pop_back();
         }
         size_t size()
         {
-            return size_;
+            return vctr_.size();
         }
         size_t mem()
         {
-            return memorySize_;
-        }
-        ~stack()
-        {
-            mfree(innerPtr_);
+            return vctr_.memorySize();
         }
     private:
-        T* innerPtr_;
-        size_t size_;
-        size_t memorySize_;
-        void resize(size_t size)
-        {
-            innerPtr_ = (T*)mrealloc(innerPtr_,size*sizeof(T));
-            if(size_ > size)
-            {
-                size_ = size;
-            }
-            memorySize_ = size;
-        }
+        mvector<T> vctr_;
 };
 #endif

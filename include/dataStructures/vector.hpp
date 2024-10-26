@@ -8,17 +8,16 @@ public:
     const char* what() const {
         return message_;
     }
-
 private:
     const char* message_;
 };
 template<typename T>
-class vector {
+class mvector {
     public:
-        vector(size_t size){ // Constructor for dynamic array
+        mvector(size_t size){ // Constructor for dynamic array
             innerPtr_ = (T*)mmalloc(size*sizeof(T));
+            memorySize_ = size*sizeof(T); 
             size_ = 0; // by default 0 elements
-            memorySize_ = size; 
         }
         T& at(size_t pos) // get element from vector
         {
@@ -30,17 +29,6 @@ class vector {
             {
                 throw OutOfRangeException("Attemp to access memory outside vector");
             }
-        }
-        void set(size_t pos, T val) // set value 
-        {
-            if(pos < memorySize_)
-            {
-                this->at(pos) = val;
-            }
-        }
-        T* ptr() // get ptr to raw access to memory
-        {
-            return innerPtr_;
         }
         void resize(size_t size) // resize memory allocated to vector
         {
@@ -77,7 +65,7 @@ class vector {
         {
             return memorySize_;
         }
-        ~vector<T>()
+        ~mvector<T>()
         {
             mfree(innerPtr_); // free memory
         }

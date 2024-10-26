@@ -9,25 +9,49 @@ struct Node
     Node* next;
 };
 template<typename T>
-class list
+class mlist
 {
     public:
-        list(T initVal){
-            Node<T> nd = Node<T>();
-            nd.value = initVal;
-            first_ = &nd;
+        mlist()
+        {
+            size_ = 0;
+            first_ = nullptr;
+            last_ = nullptr;
+        }
+        mlist(T initVal){
+            Node<T>* nd = new Node<T>{initVal, nullptr, nullptr};
+            size_ = 1;
+            first_ = nd;
             last_ = first_;
         }
-        void addNode(Node<T> nd)
+        void push(T value)
         {
-            nd->prev = last_;
-            last_->next = nd;
-            last_=last_next;
+            Node<T>* nd = new Node<T>{value, last_, nullptr};
+            if (last_) {
+                last_->next = nd;
+            } else {
+                first_ = nd;
+            }
+            last_ = nd;
+            size_ += 1;
         }
+        T pop()
+        {
+            if(last_)
+            {
+                T val = last_->value;
+                last_ = last_->prev;
+                return val;
+            }else
+            {
+                return NULL;
+            }
+        }
+        inline size_t size(){ return size_;}
         inline Node<T>* getHead() {return first_;}
         inline Node<T>* getEnd() {return last_;}
     private:
-        size_t size;
+        size_t size_;
         Node<T>* first_;
         Node<T>* last_;
 };

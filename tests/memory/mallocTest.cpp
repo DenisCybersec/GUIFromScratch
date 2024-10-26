@@ -15,7 +15,7 @@ TEST(MEMORY, ALLOCATING)
 }
 TEST(VECTOR, VECTOR)
 {
-    vector<int> vctr(20);
+    mvector<int> vctr(20);
     for(size_t i = 0;i<1000;i++)
     {
         vctr.push_back(i);
@@ -27,7 +27,7 @@ TEST(VECTOR, VECTOR)
 }
 TEST(STACK, STACK)
 {
-    stack<int> stack(20);
+    mstack<int> stack(20);
     for(size_t i = 0;i<1000;i++)
     {
         stack.push(i);
@@ -39,7 +39,7 @@ TEST(STACK, STACK)
 }
 TEST(QUEUE,QUEUE)
 {
-    queue<int> q;
+    mqueue<int> q;
     for(size_t i = 0;i<1000;i++)
     {
         q.push(i);
