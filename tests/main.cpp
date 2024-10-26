@@ -1,14 +1,21 @@
 #include<gtest/gtest.h>
 #include<iostream>
 #include<hashmap.hpp>
+#include<io.hpp>
+#include<thread.hpp>
+void func(void* arg)
+{
+    *(int*)arg = 10;
+    int uuid = getpid();
+    mprint("He110 from n3w thr3ad\n",23);
+    mprintInt(uuid);
+    mprint("\n",1);
+}
 int main()
 {
     //::testing::InitGoogleTest();
     //return RUN_ALL_TESTS();
-    mhashmap<size_t,size_t> mp;
-    std::cout << "!!!!\n" << std::endl;
-    mp.insert(1026,2);
-    mp.insert(2,10);
-    std::cout << mp.get(1026) << std::endl;;
-    std::cout << mp.get(2) << std::endl;
+    int ptr = 12;
+    func(&ptr);
+    thread nThread = thread(func,&ptr);
 }

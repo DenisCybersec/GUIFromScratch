@@ -2,7 +2,7 @@
 #define POW_H
 #include<types.hpp>
 template<typename T>
-T mpow(T value,size_t degree) // pow function
+T mpow(T value,size_t degree)// pow function
 {
     T a = value;
     if(degree == 0)

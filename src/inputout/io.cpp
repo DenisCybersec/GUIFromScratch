@@ -1,11 +1,11 @@
 #include<io.hpp>
 void mprint(char* buf, size_t size)
 {
-    msyscall(1,(void*)1,buf,size);
+    my_syscall3(1,(void*)1,buf,size);
 }
 void mread(char* buf, size_t size)
 {
-    msyscall(0,(void*)0,buf,size);
+    my_syscall3(0,(void*)0,buf,size);
 }
 void mprintInt(int number)
 {

@@ -3,3 +3,4 @@ test
 build
 CMakeTest.txt
 tests
+thread
